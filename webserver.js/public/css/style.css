@@ -1,0 +1,24 @@
+#page-container {
+	width: 760px;
+	margin: auto;
+}
+
+#main-nav {
+	background: red;
+	height: 50px;
+}
+
+#strobeMediaPlayback {
+    width: 600px;
+    height: 400px;
+}
+
+#container {
+    width: 600px;
+    height: 270px;
+}
+
+#form {
+	width: 600px;
+    height: 400px;
+}
