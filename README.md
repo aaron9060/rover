@@ -1,4 +1,6 @@
-webserver.js - node app which serves static content from ./public/ and uses socket.io for client communication.
+./webserver.js - node app which serves static content from ./public/ and uses socket.io for client communication.
+
+./arduino/src/sketch.ino - arduino sketch
 
 ./public - webserver.js's web root
 
