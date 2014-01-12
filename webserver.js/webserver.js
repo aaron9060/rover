@@ -68,9 +68,11 @@ io.sockets.on('connection', function (socket) {
   });
   socket.on('client_cmd',function(client_cmd) {
     // for (var key in client_cmd)  
+	  if("MOVE" in client_cmd ){}
         console.log("Writing to Serial Port: " + Object.keys(client_cmd).map(function(key) 
           {return key + " " + client_cmd[key]}).join(" "));
         serialPort.write(Object.keys(client_cmd).map(function(key) 
           {return key + " " + client_cmd[key]}).join(" "));
+  }
   });
 });

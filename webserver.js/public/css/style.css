@@ -11,11 +11,13 @@
 #strobeMediaPlayback {
     width: 600px;
     height: 400px;
+    float: left;
 }
 
 #container {
-    width: 600px;
-    height: 270px;
+    width: 250px;
+    height: 250px;
+    float: left;
 }
 
 #form {

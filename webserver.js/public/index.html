@@ -38,14 +38,34 @@
 		, { allowFullScreen: "true"}
 		, { name: "strobeMediaPlayback" }
 	);	  
-	</script>	 
+	</script>
+	 
 	</head>
 	<body>
 		<div id="strobeMediaPlayback"></div>
-		<div id="container"><script type="text/javascript" src="control.js"></script></div>
 		<div id="slider">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		<form>speed: 50 <input type="range" name="speed" value="150" step="5" min="50" max="255">255</form>
 		</div>
+		<div id="container"><script type="text/javascript" src="control.js"></script></div>
+
+        <div id="sketchInputContainer">
+        <div id="sketchInputForm">
+
+          <form name="sketchInput">
+        	<textarea id="sketchInputText"rows="10" cols="50" placeholder="Arduino sketch goes here..."></textarea>
+          </form>
+          <button id="sketchInputSubmit">Submit</button>
+
+        </div>
+        </div>
+
   	</body>
+  		<script defer="defer">
+    	document.getElementById('sketchInputSubmit').addEventListener('click', function() {
+    	var sketchInput = document.getElementById('sketchInputText');
+        console.log(sketchInputText.value);
+        socket.emit('client_cmd', { MOVE: '#text' });
+      }, false);
+	</script>
 </html>
