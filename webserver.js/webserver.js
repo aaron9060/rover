@@ -74,9 +74,10 @@ io.sockets.on('connection', function (socket) {
         serialPort.write(Object.keys(client_cmd).map(function(key) 
           {return key + " " + client_cmd[key]}).join(" "));
 	}
-	if("SKETCH" in client_cmd) {
+	if("SKETCH" in client_cmd){
 		console.log("Sketch Recieved:")
-		console.log(client_cmd[key]);
+		console.log(Object.keys(client_cmd).map(function(key) 
+		          {return key + " " + client_cmd[key]}));
 	}
   });
 });
