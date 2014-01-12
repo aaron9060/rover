@@ -1,4 +1,3 @@
-
 // Serial Port Communications
 
 var com = require("serialport");
@@ -75,5 +74,3 @@ io.sockets.on('connection', function (socket) {
           {return key + " " + client_cmd[key]}).join(" "));
   });
 });
-
-
