@@ -78,6 +78,5 @@ io.sockets.on('connection', function (socket) {
 		console.log("Sketch Recieved:")
 		console.log(client_cmd[key]);
 	}
-	}
   });
 });
