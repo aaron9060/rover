@@ -22,7 +22,7 @@ serialPort.on('data', function(data) {
 var http = require("http"),
     url = require("url"),
     path = require("path"),
-    fs = require("fs")
+    fs = require("fs"),
     port = process.argv[2] || 9090;
  
 var server = http.createServer(function(request, response) {
@@ -70,13 +70,22 @@ io.sockets.on('connection', function (socket) {
     // for (var key in client_cmd)  
 	if("MOVE" in client_cmd ){
         console.log("Writing to Serial Port: " + Object.keys(client_cmd).map(function(key) 
-          {return key + " " + client_cmd[key]}).join(" "));
+          {return key + " " + client_cmd[key];}).join(" "));
         serialPort.write(Object.keys(client_cmd).map(function(key) 
-          {return key + " " + client_cmd[key]}).join(" "));
+          {return key + " " + client_cmd[key];}).join(" "));
 	}
-	if("SKETCH" in client_cmd) {
-		console.log("Sketch Recieved:")
-		console.log(client_cmd[key]);
+	else if("SKETCH" in client_cmd){
+		var sketch = Object.keys(client_cmd).map(function(key){return client_cmd[key];});
+		console.log("Sketch Recieved:");
+		console.log(sketch);
+		var fs = require('fs');
+		fs.writeFile("/tmp/test", sketch , function(err) {
+			if(err) {
+				console.log(err);
+		    } else {
+		        console.log("The file was saved!");
+		    }
+		}); 
 	}
-  });
+  	});
 });
