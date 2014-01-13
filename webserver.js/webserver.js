@@ -85,12 +85,9 @@ io.sockets.on('connection', function (socket) {
 		        console.log("The file was saved!");
 		    }
 		}); 	
-		
-		
 		serialPort.close(console.log("CONSOLE PORT PAUSED - UPLOAD NOW"));
 		console.log("Unpausing in 15 seconds...");
 		setTimeout(serialPort.open(),15000);
-		
 	}
 	});
 });
