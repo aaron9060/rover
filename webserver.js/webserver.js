@@ -86,8 +86,8 @@ io.sockets.on('connection', function (socket) {
 		    }
 		}); 	
 		serialPort.close(console.log("CONSOLE PORT PAUSED - UPLOAD NOW"));
-		console.log("Unpausing in 15 seconds...");
-		setTimeout(serialPort.open(),15000);
+		console.log("Unpausing in 45 seconds...");
+		setTimeout(serialPort.open(),45000);
 	}
 	});
 });
