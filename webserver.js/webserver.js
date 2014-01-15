@@ -3,7 +3,7 @@
 var com = require("serialport");
  
 function serialInit(){
-var serialPort = new com.SerialPort("/dev/ttyACM0", {
+    serialPort = new com.SerialPort("/dev/ttyACM0", {
     baudrate: 9600,
     parser: com.parsers.readline('\r\n')
   });
