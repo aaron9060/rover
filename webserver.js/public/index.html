@@ -5,67 +5,32 @@
 	<style type="text/css" media="all">@import "css/style.css";</style>
 	<title>Rover Control Interface</title>
 	<meta name="viewport" content="width=device-width"/>
+	<script src="./socket.io/socket.io.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
-	<script src="./socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="strobe/lib/swfobject.js"></script>
-	
-	<script type="text/javascript">		
-	// Create a StrobeMediaPlayback configuration 
-	var parameters = {  
-		src: "rtmp://" + window.location.hostname + "/flvplayback/myStream",  
-		autoPlay: true,  
-		controlBarAutoHide: false,  
-		playButtonOverlay: true,  
-		// controlBarMode : "none",
-		streamType : "live",
-		showVideoInfoOverlayOnStartUp: true,  
-		optimizeBuffering : false,  
-		initialBufferTime : 0.1,  
-		expandedBufferTime : 0.1,  
-		minContinuousPlayback : 0.1,  
-		poster: "strobe/images/poster.png"  
-	};  
-	  // Embed the player SWF:		  
-	swfobject.embedSWF
-		( "strobe/StrobeMediaPlayback.swf"
-		, "strobeMediaPlayback"
-		, 640
-		, 480
-		, "10.1.0"
-		, {}
-		, parameters
-		, { allowFullScreen: "true"}
-		, { name: "strobeMediaPlayback" }
-	);	  
-	</script>
-	 
-	</head>
-	<body>
-		<div id="strobeMediaPlayback"></div>
-		<div id="slider">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		<form>speed: 50 <input type="range" name="speed" value="150" step="5" min="50" max="255">255</form>
-		</div>
-		<div id="container"><script type="text/javascript" src="control.js"></script></div>
-
-        <div id="sketchInputContainer">
-        <div id="sketchInputForm">
-
-          <form name="sketchInput">
-        	<textarea id="sketchInputText"rows="10" cols="50" placeholder="Arduino sketch goes here..."></textarea>
-          </form>
-          <button id="sketchInputSubmit">Submit</button>
-
-        </div>
-        </div>
-
-  	</body>
-  		<script defer="defer">
-    	document.getElementById('sketchInputSubmit').addEventListener('click', function() {
-    	var sketchInput = document.getElementById('sketchInputText');
-        console.log(sketchInputText.value);
-        socket.emit('client_cmd', { SKETCH : sketchInputText.value });
-      }, false);
-	</script>
+  </head>
+  <body>
+    <div id ="wrapper">
+    <div id="header"></div>
+    <div id="strobeMediaPlayback"></div>  
+    <div id="sketch">
+	  <form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form>
+	  <button id="sketchInputSubmit">Submit</button>
+	</div>  
+	<div id="controlBox">
+      <div id="control"></div>	
+	  <div id="slider"><form>50<input type="range" name="controlSlider" value="150" step="5" min="50" max="255"></input>255</form></div>
+	</div>
+	  <div id="control2">
+	  <div id="messageStage"></div>
+	</div>
+	<div id="footer"></div>
+  </div>
+  <script type="text/javascript" src="control.js"></script>
+  <script type="text/javascript" src="sketch.js"></script>
+  <script type="text/javascript" src="strobe.js"></script>
+  </body>
 </html>
+
+ 

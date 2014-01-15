@@ -1,4 +1,3 @@
-
 	// setup socket.io connection
 	var socket = io.connect('http://epsilon:9090');
 	socket.on('server_status', function (server_status) {
@@ -15,11 +14,12 @@
 		context.fillText(message, 10, 25);
 	  }
 	  var mouseIsdown = false ;
-	  var messageLayer = new Kinetic.Layer();
+
+ 	 
 	  var stage = new Kinetic.Stage({
-		  container: 'container',
-		  width: 300,
-		  height:270 
+		  container: 'control',
+		  width: 220,
+		  height:220
 	  });
 	  var layer = new Kinetic.Layer();
 	  var wedge_NW = new Kinetic.Wedge({
@@ -27,7 +27,7 @@
 		  y: stage.getHeight() / 2,
 		  radius: 100,
 		  angleDeg: 60,
-		  fill: 'purple',
+		  fill: 'gray',
 		  stroke: 'black',
 		  strokeWidth: 4,
 		  rotationDeg: 180
@@ -37,7 +37,7 @@
 		  y: stage.getHeight() / 2,
 		  radius: 100,
 		  angleDeg: 60,
-		  fill: 'yellow',
+		  fill: 'gray',
 		  stroke: 'black',
 		  strokeWidth: 4,
 		  rotationDeg: 240
@@ -57,7 +57,7 @@
 		  y: stage.getHeight() / 2,
 		  radius: 100,
 		  angleDeg: 60,
-		  fill: 'green',
+		  fill: 'gray',
 		  stroke: 'black',
 		  strokeWidth: 4,
 		  rotationDeg: 360
@@ -67,7 +67,7 @@
 		  y: stage.getHeight() / 2,
 		  radius: 100,
 		  angleDeg: 60,
-		  fill: 'blue',
+		  fill: 'gray',
 		  stroke: 'black',
 		  strokeWidth: 4,
 		  rotationDeg: 300
@@ -77,7 +77,7 @@
 		  y: stage.getHeight() / 2,
 		  radius: 100,
 		  angleDeg: 60,
-		  fill: 'orange',
+		  fill: 'gray',
 		  stroke: 'black',
 		  strokeWidth: 4,
 		  rotationDeg: 60
@@ -113,8 +113,18 @@
 	  // add the layer to the stage
 	  stage.add(layer);
 	  stage.add(circleLayer);
-	  stage.add(messageLayer);
-
+	  
+	  
+	  var messageLayer = new Kinetic.Layer();
+	  var messageStage = new Kinetic.Stage({
+		  container: 'messageStage',
+		  width: 350,
+		  height:250
+	  });	  
+	  messageStage.add(messageLayer);
+	  
+	  
+	  
 	  edgecircle.on('mouseout' ,function() {
 		  socket.emit('client_cmd', { MOVE: 'STOP' });
 	  });
@@ -160,27 +170,27 @@
 		  circle.draw();
 	  });
 	  wedge_S.on('mouseout', function () {
-		  wedge_S.setAttr('fill', 'orange');
+		  wedge_S.setAttr('fill', 'gray');
 		  wedge_S.draw();
 		  circle.draw();
 	  });
 	  wedge_N.on('mouseout', function () {
-		  wedge_N.setAttr('fill', 'yellow');
+		  wedge_N.setAttr('fill', 'gray');
 		  wedge_N.draw();
 		  circle.draw();
 	  });
 	  wedge_NE.on('mouseout', function () {
-		  wedge_NE.setAttr('fill', 'blue');
+		  wedge_NE.setAttr('fill', 'gray');
 		  wedge_NE.draw();
 		  circle.draw();
 	  });
 	  wedge_NW.on('mouseout', function () {
-		  wedge_NW.setAttr('fill', 'purple');
+		  wedge_NW.setAttr('fill', 'gray');
 		  wedge_NW.draw();
 		  circle.draw();
 	  });
 	  wedge_SE.on('mouseout', function () {
-		  wedge_SE.setAttr('fill', 'green');
+		  wedge_SE.setAttr('fill', 'gray');
 		  wedge_SE.draw();
 		  circle.draw();
 	  });

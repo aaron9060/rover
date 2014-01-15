@@ -1,26 +1,69 @@
-#page-container {
-	width: 760px;
-	margin: auto;
+html {
+	background-color: #666666;
 }
-
-#main-nav {
-	background: red;
-	height: 50px;
+#wrapper {
+    margin-left:auto;
+    margin-right:auto;
+    width: 1028px;
+    background-color: #CCCCCC;
 }
-
+#header {
+	height: 20px;
+	width: 1026px;
+	border: 1px solid black;
+}
 #strobeMediaPlayback {
-    width: 600px;
-    height: 400px;
-    float: left;
+	margin-left: auto;
+	margin-right: auto;
+	float: left;
+	width: 650px;
+	height: 490px;
+	border: 1px solid black;
 }
-
-#container {
-    width: 250px;
-    height: 250px;
-    float: left;
+#sketch {
+	background-color: #CCCC9A;
+	float: left;
+	width: 374px;
+	height: 490px;
+	border: 1px solid black;
+	text-align: center;
 }
-
-#form {
-	width: 600px;
-    height: 400px;
+#sketchInputTextArea {
+	margin-top: 20px;
+	resize: none;
+}
+#controlBox {
+	background-color: #CCCC9A;
+    float: left;
+	width: 650px;
+	height: 252px;
+	text-align: center;
+	border: 1px solid black;
+}
+#control {
+	background-color: #CCCC9A;
+	width: 220px;
+    height: 220px;
+	margin: 0 auto;
+}
+#slider {
+	background-color: #CCCC9A;
+	margin: 0 auto;
+    clear: left;
+    height: 28px;
+	width: 220px;
+}
+#control2 {
+	background-color: #CCCC9A;
+	float: left;
+	border: 1px solid black;
+	width: 374px;
+	height: 252px;
+    margin : 0 auto;
+}
+#footer {
+	clear: left;
+	width: 1026px;
+	height: 20px;
+	border: 1px solid black;
 }
