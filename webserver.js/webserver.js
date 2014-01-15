@@ -97,12 +97,10 @@ io.sockets.on('connection', function (socket) {
 		    }
 		}); 	
         serialPort.close(function(){
-            console.log("CONSOLE PORT PAUSED - UPLOAD NOW");
-            sleep(45000);
+            console.log("CONSOLE PORT CLOSED - UPLOAD NOW");
             console.log("Re-opening port in 45 seconds...");
-            serialPort.open(function(){
-                console.log("CONSOLE PORT OPENED");
-            });
+            sleep(45000);
+            serialInit();
         });
 	}
 	});

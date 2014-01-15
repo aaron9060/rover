@@ -4,41 +4,48 @@ html {
 #wrapper {
     margin-left:auto;
     margin-right:auto;
-    width: 1028px;
-    background-color: #CCCCCC;
+    text-align: center;
+    width: 1032px;
+    background-color: #000000;
+    border:2px solid;
+	border-radius:10px;
 }
 #header {
 	height: 20px;
 	width: 1026px;
-	border: 1px solid black;
 }
 #strobeMediaPlayback {
 	margin-left: auto;
 	margin-right: auto;
 	float: left;
+	margin: 0 auto;
 	width: 650px;
 	height: 490px;
-	border: 1px solid black;
 }
 #sketch {
 	background-color: #CCCC9A;
 	float: left;
 	width: 374px;
 	height: 490px;
-	border: 1px solid black;
+	border:2px solid;
+	border-radius:10px;
 	text-align: center;
 }
-#sketchInputTextArea {
+#sketchInputText {
 	margin-top: 20px;
 	resize: none;
+	border:2px solid;
+	border-radius:10px;
 }
 #controlBox {
 	background-color: #CCCC9A;
     float: left;
-	width: 650px;
+	width: 646px;
 	height: 252px;
 	text-align: center;
 	border: 1px solid black;
+	border:2px solid;
+	border-radius:10px;
 }
 #control {
 	background-color: #CCCC9A;
@@ -60,10 +67,11 @@ html {
 	width: 374px;
 	height: 252px;
     margin : 0 auto;
+    border:2px solid;
+	border-radius:10px;   
 }
 #footer {
 	clear: left;
 	width: 1026px;
 	height: 20px;
-	border: 1px solid black;
 }
