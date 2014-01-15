@@ -96,11 +96,13 @@ io.sockets.on('connection', function (socket) {
 		        console.log("The file was saved!");
 		    }
 		}); 	
-		console.log("CONSOLE PORT CLOSED - UPLOAD NOW")
-		serialPort.close(function(){console.log("CONSOLE PORT PAUSED - UPLOAD NOW");});
-		sleep(45000);
-		console.log("Re-opening port in 45 seconds...");
-		serialPort.open(function(){console.log("CONSOLE PORT OPENED");
+        console.log("CONSOLE PORT CLOSED - UPLOAD NOW")
+        serialPort.close(function(){
+            console.log("CONSOLE PORT PAUSED - UPLOAD NOW");
+            sleep(45000);
+            console.log("Re-opening port in 45 seconds...");
+        });
+        serialPort.open(function(){console.log("CONSOLE PORT OPENED")});
 	}
 	});
 });
