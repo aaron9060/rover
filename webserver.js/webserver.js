@@ -58,6 +58,17 @@ console.log("Static file server running at\n  => http://localhost:" + port + "/\
 
 // real-time communication (socket.io)
 
+function sleep(milliseconds) {
+	  var start = new Date().getTime();
+	  for (var i = 0; i < 1e7; i++) {
+	    if ((new Date().getTime() - start) > milliseconds){
+	      break;
+	    }
+	  }
+	}
+
+
+
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
@@ -85,12 +96,11 @@ io.sockets.on('connection', function (socket) {
 		        console.log("The file was saved!");
 		    }
 		}); 	
-		console.log("CONSOLE PORT PAUSED - UPLOAD NOW")
-		
+		console.log("CONSOLE PORT CLOSED - UPLOAD NOW")
 		serialPort.close(function(){console.log("CONSOLE PORT PAUSED - UPLOAD NOW");});
-		
-		console.log("Unpausing in 45 seconds...");
-		setTimeout(serialPort.open(),45000);
+		sleep(45000);
+		console.log("Re-opening port in 45 seconds...");
+		serialPort.open(function(){console.log("CONSOLE PORT OPENED");
 	}
 	});
 });
