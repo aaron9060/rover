@@ -100,8 +100,10 @@ io.sockets.on('connection', function (socket) {
             console.log("CONSOLE PORT PAUSED - UPLOAD NOW");
             sleep(45000);
             console.log("Re-opening port in 45 seconds...");
+            serialPort.open(function(){
+                console.log("CONSOLE PORT OPENED");
+            });
         });
-        serialPort.open(function(){console.log("CONSOLE PORT OPENED")});
 	}
 	});
 });
