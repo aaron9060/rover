@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="strobe/lib/swfobject.js"></script>
   </head>
   <body>
+    <div id="outsidewrapper">
     <div id ="wrapper">
     <div id="header"></div>
     <div id="strobeMediaPlayback"></div>  
@@ -20,12 +21,13 @@
 	</div>  
 	<div id="controlBox">
       <div id="control"></div>	
-	  <div id="slider"><form>50<input type="range" name="controlSlider" value="150" step="5" min="50" max="255"></input>255</form></div>
+	  <div id="slider"><form>50<input type="range" id="controlSlider" value="150" step="5" min="50" max="255"></input>255</form></div>
 	</div>
 	  <div id="control2">
 	  <div id="messageStage"></div>
 	</div>
 	<div id="footer"></div>
+  </div>
   </div>
   <script type="text/javascript" src="control.js"></script>
   <script type="text/javascript" src="sketch.js"></script>

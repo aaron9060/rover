@@ -1,17 +1,30 @@
 html {
 	background-color: #666666;
 }
+#outsidewrapper {
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    width: 1060px;
+    height: 752px;
+    background-color: gray;
+    border:2px solid;
+	border-radius:10px;
+	padding-top: 8px;
+}
 #wrapper {
     margin-left:auto;
     margin-right:auto;
     text-align: center;
-    width: 1032px;
+    width: 1036px;
+    height: 740px;
     background-color: #000000;
     border:2px solid;
 	border-radius:10px;
+	padding-left: 4px;
 }
 #header {
-	height: 20px;
+	height: 10px;
 	width: 1026px;
 }
 #strobeMediaPlayback {
@@ -41,32 +54,44 @@ html {
 	background-color: #CCCC9A;
     float: left;
 	width: 646px;
-	height: 252px;
+	height: 224px;
 	text-align: center;
-	border: 1px solid black;
-	border:2px solid;
+	border: 2px solid black;
 	border-radius:10px;
+	display:table; 
 }
 #control {
 	background-color: #CCCC9A;
 	width: 220px;
     height: 220px;
+	display: inline-block;
+	
 	margin: 0 auto;
 }
 #slider {
+	display: inline-block;
 	background-color: #CCCC9A;
-	margin: 0 auto;
-    clear: left;
-    height: 28px;
-	width: 220px;
+    height: 196px;
+	width: 32px;
+	margin-left: 10px;
+	font:15px arial,sans-serif;
+	font-weight: bold;
+}
+#controlSlider {
+    -webkit-appearance: slider-vertical;
+    width: 20px;
+    height: 170px;	
+	padding-left:2px;
+	padding-right:2px;
+
 }
 #control2 {
 	background-color: #CCCC9A;
 	float: left;
 	border: 1px solid black;
 	width: 374px;
-	height: 252px;
-    margin : 0 auto;
+	height: 224px;
+    margin: 0 auto;
     border:2px solid;
 	border-radius:10px;   
 }

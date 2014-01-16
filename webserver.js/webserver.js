@@ -31,8 +31,8 @@ var http = require("http"),
  
 var server = http.createServer(function(request, response) {
  
-  var uri = url.parse(request.url).pathname
-    , filename = path.join("/home/pi/dev/webserver.js/public", uri);
+var uri = url.parse(request.url).pathname
+  , filename = path.join("/home/pi/dev/webserver.js/public", uri);
  
   path.exists(filename, function(exists) {
     if(!exists) {
@@ -64,15 +64,13 @@ console.log("Static file server running at\n  => http://localhost:" + port + "/\
 // real-time communication (socket.io)
  
 function sleep(milliseconds) {
-          var start = new Date().getTime();
-          for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-              break;
-            }
-          }
-        }
- 
- 
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+    break;
+    }
+  }
+}
  
 var io = require('socket.io').listen(server);
  
@@ -90,23 +88,32 @@ io.sockets.on('connection', function (socket) {
           {return key + " " + client_cmd[key];}).join(" "));
         }
         else if("SKETCH" in client_cmd){
-                var sketch = Object.keys(client_cmd).map(function(key){return client_cmd[key];});
-                console.log("Sketch Recieved:");
-                console.log(sketch);
-                var fs = require('fs');
-                fs.writeFile("/tmp/test", sketch , function(err) {
-                        if(err) {
-                                console.log(err);
-                    } else {
-                        console.log("The file was saved!");
-                    }
-                });        
-                serialPort.close(function(){
-                    console.log("CONSOLE PORT CLOSED - UPLOAD NOW");
-                    console.log("Re-opening port in 45 seconds...");
-                    sleep(45000);
-                    serialInit();
-                });      
+	        var sketch = Object.keys(client_cmd).map(function(key){return client_cmd[key];});
+	        console.log("Sketch Recieved:");
+	        console.log(sketch);
+	        var fs = require('fs');
+	        // backup current sketch to ./src.bak
+	        fs.createReadStream('/home/pi/dev/arduino/src/sketch.ino').pipe(fs.createWriteStream('/home/pi/dev/arduino/src.bak/sketch.ino-'));
+	        fs.writeFile("/home/pi/dev/arduino/src/sketch.ino", sketch , function(err) {
+	                if(err) {
+	                        console.log(err);
+	            } else {
+	                console.log("The file was saved!");
+	            }
+	        });        
+	        serialPort.close(function(){
+	            console.log("Console port closed for 90 seconds. Uploading Sketch...");
+	            var exec = require('child_process').exec;
+	            exec('ino clean; ino build ino upload; ino clean;', {
+	              cwd: '/home/pi/src/arduino'
+	            }, function(error, stdout, stderr) {
+	             // work with result
+	            });
+	            console.log("sleep function intiation...");
+	            sleep(90000);
+	            console.log("opening port");
+	            serialInit();
+	        });      
         }
         });
 });
