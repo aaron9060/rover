@@ -1,10 +1,13 @@
-	// setup socket.io connection
+// setup socket.io connection
+
 	var socket = io.connect('http://epsilon:9090');
 	socket.on('server_status', function (server_status) {
 	  writeMessage(messageLayer, server_status.message);
 	  console.log(server_status);
 	  socket.emit('client_status', { message: 'connected' });
 	});
+	
+// Message Display
 	
 	function writeMessage(messageLayer, message) {
 		var context = messageLayer.getContext();
@@ -13,9 +16,35 @@
 		context.fillStyle = 'black';
 		context.fillText(message, 10, 25);
 	  }
-	  var mouseIsdown = false ;
+	  var messageLayer = new Kinetic.Layer();
+	  var messageStage = new Kinetic.Stage({
+		  container: 'messageStage',
+		  width: 350,
+		  height:250
+	  });	  
+	  messageStage.add(messageLayer);
 
- 	 
+// Sketch Upload 
+	  
+	  document.getElementById('sketchInputSubmit').addEventListener('click', function() {
+			var sketchInput = document.getElementById('sketchInputText');
+			console.log(sketchInputText.value);
+			socket.emit('client_cmd', { SKETCH : sketchInputText.value });
+		}, false);
+
+// Tab Control
+	  
+	  $(function() {
+		    $( "#tabs" ).tabs();
+		});
+
+		$(document).ready(function () {
+		   $('#tab1').effect("pulsate", {}, 1000);
+		});
+	    
+// Control Display
+	  
+	  var mouseIsdown = false ;
 	  var stage = new Kinetic.Stage({
 		  container: 'control',
 		  width: 220,
@@ -113,18 +142,7 @@
 	  // add the layer to the stage
 	  stage.add(layer);
 	  stage.add(circleLayer);
-	  
-	  
-	  var messageLayer = new Kinetic.Layer();
-	  var messageStage = new Kinetic.Stage({
-		  container: 'messageStage',
-		  width: 350,
-		  height:250
-	  });	  
-	  messageStage.add(messageLayer);
-	  
-	  
-	  
+
 	  edgecircle.on('mouseout' ,function() {
 		  socket.emit('client_cmd', { MOVE: 'STOP' });
 	  });
@@ -133,7 +151,10 @@
 		  circle.draw();
 	  });
 	  circle.on('mousedown',function() {
-		  socket.emit('client_cmd', { MOVE: 'STOP', SPEED: $("[name=speed]").val() });
+		  socket.emit('client_cmd', { 
+			  MOVE: 'STOP',
+			  SPEED: $("[name=speed]").val()
+			  });
 	  });
 	  circle.on('mouseout',function() {
 		  circle.setAttr('fill', 'black');
@@ -199,7 +220,6 @@
 		  wedge_SW.draw();
 		  circle.draw();
 	  });
-
 	  wedge_NW.on('mousedown', function () {
 		  socket.emit('client_cmd', { MOVE: 'FWLE' , SPEED: $("[name=speed]").val() });
 	  });
@@ -236,3 +256,33 @@
 	  wedge_S.on('mouseup', function () {
 		  socket.emit('client_cmd', { MOVE: 'STOP' });
 	  });
+	  
+	  
+// Create StrobeMediaPlayback configuration 
+		var parameters = {  
+			src: "rtmp://" + window.location.hostname + "/flvplayback/myStream",  
+			autoPlay: true,  
+			controlBarAutoHide: false,  
+			playButtonOverlay: true,  
+			// controlBarMode : "none",
+			streamType : "live",
+			showVideoInfoOverlayOnStartUp: true,  
+			optimizeBuffering : false,  
+			initialBufferTime : 0.1,  
+			expandedBufferTime : 0.1,  
+			minContinuousPlayback : 0.1,  
+			poster: "strobe/images/poster.png"  
+		};  
+	// Embed the player SWF:		  
+		swfobject.embedSWF
+			( "strobe/StrobeMediaPlayback.swf"
+			, "strobeMediaPlayback"
+			, 640
+			, 480
+			, "10.1.0"
+			, {}
+			, parameters
+			, { allowFullScreen: "false"}
+			, { name: "strobeMediaPlayback" }
+		);	  
+		

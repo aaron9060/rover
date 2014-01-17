@@ -6,18 +6,45 @@
 	<title>Rover Control Interface</title>
 	<meta name="viewport" content="width=device-width"/>
 	<script src="./socket.io/socket.io.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="strobe/lib/swfobject.js"></script>
   </head>
   <body>
     <div id="outsidewrapper">
     <div id ="wrapper">
     <div id="header"></div>
-    <div id="strobeMediaPlayback"></div>  
-    <div id="sketch">
-	  <form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form>
-	  <button id="sketchInputSubmit">Submit</button>
+    <div id="strobeMediaPlayback"></div>
+      
+    <div id="tabs">
+	    <ul>
+	        <li><a id="tab1" href="#tab-log">Log</a></li>  
+	        <li><a id="tab2" href="#tab-sketch">Sketch</a></li>
+	        <li><a id="tab3" href="#tab-chat">Chat</a></li>  
+	    </ul>   
+	    <div id="tab-log">       
+	        <p>logging here</p>    
+	    </div>    
+	    <div id="tab-sketch">
+	        <p>sketch here</p>
+	        
+	          <form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
+			  <button id="sketchInputSubmit">Submit</button>
+	        
+	        <!-- 
+	        <div id="sketch"> 
+			<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
+			  <button id="sketchInputSubmit">Submit</button>
+			  //-->
+			  
+			</div>
+	    </div>    
+	    <div id="tab-chat">   
+	        <p>chat here</p> 
+	    </div>
+ 	</div>
+
 	</div>  
 	<div id="controlBox">
       <div id="control"></div>	
@@ -30,9 +57,7 @@
   </div>
   </div>
   <script type="text/javascript" src="control.js"></script>
-  <script type="text/javascript" src="sketch.js"></script>
-  <script type="text/javascript" src="strobe.js"></script>
+  
   </body>
 </html>
-
  
