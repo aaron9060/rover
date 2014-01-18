@@ -286,9 +286,9 @@ function timeStamp() {
 			autoPlay: true,  
 			controlBarAutoHide: false,  
 			playButtonOverlay: true,  
-			// controlBarMode : "none",
+			controlBarMode : "none",
 			streamType : "live",
-			showVideoInfoOverlayOnStartUp: true,  
+			showVideoInfoOverlayOnStartUp: false,  
 			optimizeBuffering : false,  
 			initialBufferTime : 0.1,  
 			expandedBufferTime : 0.1,  
@@ -305,6 +305,7 @@ function timeStamp() {
 			, {}
 			, parameters
 			, { allowFullScreen: "false"}
+			, { showVideoInfoOverlayOnStartUp: "false" }
 			, { name: "strobeMediaPlayback" }
 		);	  
 		
