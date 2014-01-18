@@ -2,7 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
 	<style type="text/css" media="all">@import "css/style.css";</style>
+ 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"> 
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
+	
+	
 	<title>Rover Control Interface</title>
 	<meta name="viewport" content="width=device-width"/>
 	<script src="./socket.io/socket.io.js"></script>
@@ -13,51 +18,39 @@
   </head>
   <body>
     <div id="outsidewrapper">
-    <div id ="wrapper">
-    <div id="header"></div>
-    <div id="strobeMediaPlayback"></div>
-      
-    <div id="tabs">
-	    <ul>
-	        <li><a id="tab1" href="#tab-log">Log</a></li>  
-	        <li><a id="tab2" href="#tab-sketch">Sketch</a></li>
-	        <li><a id="tab3" href="#tab-chat">Chat</a></li>  
-	    </ul>   
-	    <div id="tab-log">       
-	        <p>logging here</p>    
-	    </div>    
-	    <div id="tab-sketch">
-	        <p>sketch here</p>
-	        
-	          <form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
-			  <button id="sketchInputSubmit">Submit</button>
-	        
-	        <!-- 
-	        <div id="sketch"> 
-			<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
-			  <button id="sketchInputSubmit">Submit</button>
-			  //-->
-			  
-			</div>
-	    </div>    
-	    <div id="tab-chat">   
-	        <p>chat here</p> 
-	    </div>
- 	</div>
-
-	</div>  
-	<div id="controlBox">
-      <div id="control"></div>	
-	  <div id="slider"><form>50<input type="range" id="controlSlider" value="150" step="5" min="50" max="255"></input>255</form></div>
-	</div>
-	  <div id="control2">
-	  <div id="messageStage"></div>
-	</div>
-	<div id="footer"></div>
-  </div>
+	    <div id ="wrapper">
+	    <div id="header"></div>
+	    <div id="strobeMediaPlayback"></div>
+	    <div id="tabs">
+		    <ul>
+		        <li><a id="tab1" href="#tab-log">Log</a></li>  
+		        <li><a id="tab2" href="#tab-sketch">Sketch</a></li>
+		        <li><a id="tab3" href="#tab-chat">Chat</a></li>  
+		    </ul>   
+		    <div id="tab-log">       
+		        <p>logging here</p>    
+		    </div>    
+		    <div id="tab-sketch">	         
+		    	<div id="sketch"> 
+					<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
+					<button id="sketchInputSubmit">Submit</button>
+				</div>
+		    </div>    
+		    <div id="tab-chat">   
+		        <p>chat here</p> 
+		    </div>
+		</div>  
+		<div id="controlBox">
+	      <div id="control"></div>	
+		  <div id="slider"><form>50<input type="range" id="controlSlider" value="150" step="5" min="50" max="255"></input>255</form></div>
+		</div>
+		<div id="control2">
+		  <div id="messageStage"></div>
+		</div>
+		<div id="footer"></div>
+	  </div>
   </div>
   <script type="text/javascript" src="control.js"></script>
-  
   </body>
 </html>
  

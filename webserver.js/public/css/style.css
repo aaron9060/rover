@@ -6,7 +6,7 @@ html {
     margin-right:auto;
     text-align: center;
     width: 1060px;
-    height: 752px;
+    height: 756px;
     background-color: gray;
     border:2px solid;
 	border-radius:10px;
@@ -17,24 +17,51 @@ html {
     margin-right:auto;
     text-align: center;
     width: 1036px;
-    height: 740px;
+    height: 744px;
     background-color: #000000;
     border:2px solid;
 	border-radius:10px;
-	padding-left: 4px;
+	padding-left: 6px;
 }
 #header {
 	height: 10px;
 	width: 1026px;
 }
 #tabs {
-	background-color: #CBBB9A;
+	background-color: #CCCC9A;
 	float: left;
-	width: 374px;
+	width: 368px;
 	height: 490px;
+	border: 2px solid;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 80%;
+}
+#tab-sketch {
+	background-color: #CCCC9A;
+	float: left;
+	padding-left: 4px;
+	width: 300px;
+	height: 300px;
 	border:2px solid;
 	border-radius:10px;
 	text-align: center;
+}
+#sketch {
+	background-color: #CCCC9A;
+	float: left;
+	width: 300px;
+	height: 280px;
+	border:2px solid;
+	border-radius:10px;
+	text-align: center;
+}
+#sketchInputText {
+	resize: none;
+	border:2px solid;
+	border-radius:10px;
+	width: 280px;
+	height: 250px;
 }
 #strobeMediaPlayback {
 	margin-left: auto;
@@ -43,22 +70,6 @@ html {
 	margin: 0 auto;
 	width: 650px;
 	height: 490px;
-}
-#sketch {
-	background-color: #CCCC9A;
-	float: left;
-	width: 374px;
-	height: 490px;
-	border:2px solid;
-	border-radius:10px;
-	text-align: center;
-	visibility: hidden;
-}
-#sketchInputText {
-	margin-top: 20px;
-	resize: none;
-	border:2px solid;
-	border-radius:10px;
 }
 #controlBox {
 	background-color: #CCCC9A;
@@ -98,7 +109,8 @@ html {
 #control2 {
 	background-color: #CCCC9A;
 	float: left;
-	border: 1px solid black;
+	text-align: center;
+	border: 2px solid black;
 	width: 374px;
 	height: 224px;
     margin: 0 auto;
