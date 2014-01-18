@@ -1,26 +1,4 @@
-// Serial Port Communications
- 
-var com = require("serialport");
- 
-function serialInit(){
-    serialPort = new com.SerialPort("/dev/ttyACM0", {
-    baudrate: 9600,
-    parser: com.parsers.readline('\r\n')
-  });
- 
-serialPort.on('open',function() {
-  console.log('Port open');
-});
- 
-serialPort.on('data', function(data) {
-  console.log(data.toString());
-});
- 
-console.log("CONSOLE PORT OPENED");
-}
- 
-serialInit();
- 
+
 // Serve Static Web Content (node-static)
  
 var http = require("http"),
@@ -61,21 +39,12 @@ var uri = url.parse(request.url).pathname
  
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
  
-// real-time communication (socket.io)
- 
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-    break;
-    }
-  }
-}
- 
+//real-time communication (socket.io)
+
 var io = require('socket.io').listen(server);
  
 io.sockets.on('connection', function (socket) {
-  socket.emit('server_status', { message: 'Connected' });
+  socket.emit('server_status', { message: 'Connected\n' });
   socket.on('client_status', function (client_status) {
     console.log(client_status);
   });
@@ -83,7 +52,7 @@ io.sockets.on('connection', function (socket) {
     // for (var key in client_cmd)  
         if("MOVE" in client_cmd ){
         socket.emit('server_status', { message: Object.keys(client_cmd).map(function(key)
-                {return key + " " + client_cmd[key];}).join(" ") });
+                {return key + " " + client_cmd[key] + "\n";}).join(" ") });
         console.log("Writing to Serial Port: " + Object.keys(client_cmd).map(function(key)
           {return key + " " + client_cmd[key];}).join(" "));
         serialPort.write(Object.keys(client_cmd).map(function(key)
@@ -91,7 +60,7 @@ io.sockets.on('connection', function (socket) {
         }
         else if("SKETCH" in client_cmd){
 	        var sketch = Object.keys(client_cmd).map(function(key){return client_cmd[key];});
-	        
+	        socket.emit('server_status', { message: 'Sketch Recieved\n' });
 	        console.log("Sketch Recieved:");
 	        console.log(sketch);
 	        var fs = require('fs');
@@ -105,8 +74,8 @@ io.sockets.on('connection', function (socket) {
 	            }
 	        });        
 	        serialPort.close(function(){
-	        	socket.emit('server_status', { message: 'Console port closed for 90 seconds. Uploading Sketch...' });
-	            console.log("Console port closed for 90 seconds. Uploading Sketch...");
+	        	socket.emit('server_status', { message: 'Console port closed for 90 seconds. Uploading Sketch.\n' });
+	            console.log("Console port closed for 90 seconds - Uploading Sketch\n");
 	            var exec = require('child_process').exec;
 	            exec('ino clean; ino build ino upload; ino clean;', {
 	              cwd: '/home/pi/src/arduino'
@@ -116,9 +85,46 @@ io.sockets.on('connection', function (socket) {
 	            console.log("sleep function intiated...");
 	            sleep(90000);
 	            console.log("Re-opening serial port");
-	            socket.emit('server_status', { message: 'Re-opening serial port' });
+	            socket.emit('server_status', { message: 'Re-opening serial port\n' });
 	            serialInit();
 	        });      
         }
         });
 });
+
+
+// Serial Port Communications
+ 
+var com = require("serialport");
+ 
+function serialInit(){
+    serialPort = new com.SerialPort("/dev/ttyACM0", {
+    baudrate: 9600,
+    parser: com.parsers.readline('\r\n')
+  });
+ 
+serialPort.on('open',function() {
+  console.log('Port open');
+});
+ 
+serialPort.on('data', function(data) {
+  console.log(data.toString());
+  socket.emit('server_status', { message: 'data.toString()' });
+});
+ 
+console.log("CONSOLE PORT OPENED");
+}
+ 
+serialInit();
+ 
+// Sleep function
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+    break;
+    }
+  }
+}
+ 
