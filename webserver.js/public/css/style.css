@@ -2,6 +2,8 @@ html {
 	background-color: #666666;
 }
 
+.ui-widget-content{background:#cccc9a;}
+
 #outsidewrapper {
     margin-left:auto;
     margin-right:auto;
@@ -35,9 +37,19 @@ html {
 	height: 488px;
 	border: 4px solid;
 	border-radius: 10px;
-	font-size: 80%;
+	font-size: 60%;
 }
 #tab-sketch {
+	background-color: #CCCC9A;
+	border-radius:10px;
+	width: 336px;	
+}
+#tab-log {
+	background-color: #CCCC9A;
+	border-radius:10px;
+	width: 336px;	
+}
+#tab-chat {
 	background-color: #CCCC9A;
 	border-radius:10px;
 	width: 336px;	
