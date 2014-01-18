@@ -1,6 +1,6 @@
 // setup socket.io connection
 
-	var socket = io.connect('http://epsilon:9090');
+	var socket = io.connect('http://packetmaze.net:9090');
 	socket.on('server_status', function (server_status) {
 	  $( "#logText" ).append("[" + timeStamp() + "] " + server_status.message);
 	  $('#tab1').effect("pulsate", {}, 3000);
@@ -50,12 +50,18 @@ function timeStamp() {
 	  });	  
 	  messageStage.add(messageLayer);
 
-// Sketch Upload 
+// Sketch Control
 	  
 	  document.getElementById('sketchInputSubmit').addEventListener('click', function() {
 			var sketchInput = document.getElementById('sketchInputText');
 			console.log(sketchInputText.value);
 			socket.emit('client_cmd', { SKETCH : sketchInputText.value });
+		}, false);
+	  
+	  document.getElementById('sketchOriginalSubmit').addEventListener('click', function() {
+			var sketchInput = document.getElementById('sketchInputText');
+			console.log(sketchInputText.value);
+			socket.emit('client_cmd', { SKETCH : original });
 		}, false);
 
 // Tab Control
