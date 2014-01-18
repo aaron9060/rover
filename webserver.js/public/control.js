@@ -2,7 +2,7 @@
 
 	var socket = io.connect('http://epsilon:9090');
 	socket.on('server_status', function (server_status) {
-	  writeMessage(messageLayer, server_status.message);
+	  $( "#logText" ).append(server_status.message);
 	  console.log(server_status);
 	  socket.emit('client_status', { message: 'connected' });
 	});
