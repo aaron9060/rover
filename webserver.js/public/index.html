@@ -2,12 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
 	<style type="text/css" media="all">@import "css/style.css";</style>
  	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"> 
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
-	
-	
 	<title>Rover Control Interface</title>
 	<meta name="viewport" content="width=device-width"/>
 	<script src="./socket.io/socket.io.js"></script>
@@ -28,16 +25,16 @@
 		        <li><a id="tab3" href="#tab-chat">Chat</a></li>  
 		    </ul>   
 		    <div id="tab-log">       
-		        <p>logging here</p>    
+		        <form name="logText"><textarea id="logText" rows="25" cols="40"></textarea></form>
+		        <button id="clearlogText">Clear</button>     
 		    </div>    
 		    <div id="tab-sketch">	         
-		    	<div id="sketch"> 
-					<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
-					<button id="sketchInputSubmit">Submit</button>
-				</div>
+		    	<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
+				<button id="sketchInputSubmit">Submit</button>
+				<button id="sketchInputSubmit">Original</button>
 		    </div>    
 		    <div id="tab-chat">   
-		        <p>chat here</p> 
+		        <form name="chatText"><textarea id="chatText" rows="25" cols="40"></textarea></form> 
 		    </div>
 		</div>  
 		<div id="controlBox">

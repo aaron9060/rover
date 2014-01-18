@@ -1,12 +1,13 @@
 html {
 	background-color: #666666;
 }
+
 #outsidewrapper {
     margin-left:auto;
     margin-right:auto;
     text-align: center;
-    width: 1060px;
-    height: 756px;
+    width: 1062px;
+    height: 754px;
     background-color: gray;
     border:2px solid;
 	border-radius:10px;
@@ -16,52 +17,52 @@ html {
     margin-left:auto;
     margin-right:auto;
     text-align: center;
-    width: 1036px;
-    height: 744px;
+    width: 1039px;
+    height: 742px;
     background-color: #000000;
     border:2px solid;
 	border-radius:10px;
 	padding-left: 6px;
 }
 #header {
-	height: 10px;
+	height: 5px;
 	width: 1026px;
 }
 #tabs {
 	background-color: #CCCC9A;
 	float: left;
-	width: 368px;
-	height: 490px;
-	border: 2px solid;
+	width: 370px;
+	height: 488px;
+	border: 4px solid;
 	border-radius: 10px;
-	text-align: center;
+
 	font-size: 80%;
 }
 #tab-sketch {
 	background-color: #CCCC9A;
-	float: left;
-	padding-left: 4px;
-	width: 300px;
-	height: 300px;
-	border:2px solid;
 	border-radius:10px;
-	text-align: center;
-}
-#sketch {
-	background-color: #CCCC9A;
-	float: left;
-	width: 300px;
-	height: 280px;
-	border:2px solid;
-	border-radius:10px;
-	text-align: center;
+	width: 336px;	
 }
 #sketchInputText {
+	margin: 0 auto;
 	resize: none;
-	border:2px solid;
-	border-radius:10px;
-	width: 280px;
-	height: 250px;
+	border-radius: 5px;
+	width: 324px;
+	height: 390px;
+}
+#logText {
+	margin: 0 auto;
+	resize: none;
+	border-radius: 5px;
+	width: 324px;
+	height: 390px;
+}
+#chatText {
+	margin: 0 auto;
+	resize: none;
+	border-radius: 5px;
+	width: 324px;
+	height: 390px;
 }
 #strobeMediaPlayback {
 	margin-left: auto;
@@ -74,20 +75,20 @@ html {
 #controlBox {
 	background-color: #CCCC9A;
     float: left;
-	width: 646px;
+	width: 644px;
 	height: 224px;
 	text-align: center;
-	border: 2px solid black;
+	border: 4px solid black;
 	border-radius:10px;
-	display:table; 
+	display:table;
 }
 #control {
 	background-color: #CCCC9A;
 	width: 220px;
     height: 220px;
 	display: inline-block;
-	
 	margin: 0 auto;
+	border-top: 2px;
 }
 #slider {
 	display: inline-block;
@@ -111,11 +112,13 @@ html {
 	float: left;
 	text-align: center;
 	border: 2px solid black;
-	width: 374px;
-	height: 224px;
+	width: 372px;
+	height: 220px;
     margin: 0 auto;
-    border:2px solid;
+    border:4px solid;
 	border-radius:10px;   
+	padding-top: 4px;
+	padding-left: 4px;
 }
 #footer {
 	clear: left;
