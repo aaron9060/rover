@@ -1,18 +1,16 @@
-test
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"> 
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
-	<style type="text/css" media="all">@import "css/style.css";</style>
+ 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" /> 
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Rover Control Interface</title>
 	<meta name="viewport" content="width=device-width"/>
-	<script src="./socket.io/socket.io.js"></script>
-	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="strobe/lib/swfobject.js"></script>
   </head>
   <body>
@@ -26,17 +24,17 @@ test
 		        <li><a id="tab2" href="#tab-sketch">Sketch</a></li>
 		        <li><a id="tab3" href="#tab-chat">Chat</a></li>  
 		    </ul>   
-		    <div id="tab-log">       
-		        <form name="logText"><textarea id="logText" rows="25" cols="40"></textarea></form>
+		    <div class="tab-form" id="tab-log">       
+		        <textarea class="tab-text" id="logText"></textarea>
 		        <button id="clearlogText">Clear</button>     
 		    </div>    
-		    <div id="tab-sketch">	         
-		    	<form name="sketchInput"><textarea id="sketchInputText" rows="25" cols="40" placeholder="Arduino sketch goes here..."></textarea></form> 
-				<button id="sketchInputSubmit">Submit</button>
-				<button id="sketchOriginalSubmit">Original</button>
+		     <div class="tab-form" id="tab-sketch">  
+		    	<textarea class="tab-text" id="sketchInputText" placeholder="Arduino sketch goes here..."></textarea>
+				<button class="button" id="sketchInputSubmit">Submit</button>
+				<button class="button" id="sketchOriginalSubmit">Original</button>
 		    </div>    
-		    <div id="tab-chat">   
-		        <form name="chatText"><textarea id="chatText" rows="25" cols="40"></textarea></form> 
+		     <div class="tab-form" id="tab-chat">  
+		        <textarea class="tab-text" id="chatText"></textarea>
 		    </div>
 		</div>  
 		<div id="controlBox">
@@ -51,5 +49,5 @@ test
   </div>
   <script type="text/javascript" src="control.js"></script>
   </body>
-</html>
+  </html>
  

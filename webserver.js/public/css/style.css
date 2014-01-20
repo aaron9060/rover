@@ -2,7 +2,11 @@ html {
 	background-color: #666666;
 }
 
-.ui-widget-content{background:#cccc9a;}
+.ui-widget-content {
+	background:#cccc9a;
+}
+.button {
+}
 
 #outsidewrapper {
     margin-left:auto;
@@ -39,42 +43,22 @@ html {
 	border-radius: 10px;
 	font-size: 60%;
 }
-#tab-sketch {
+
+.tab-form {
 	background-color: #CCCC9A;
 	border-radius:10px;
 	width: 336px;	
-}
-#tab-log {
-	background-color: #CCCC9A;
-	border-radius:10px;
-	width: 336px;	
-}
-#tab-chat {
-	background-color: #CCCC9A;
-	border-radius:10px;
-	width: 336px;	
-}
-#sketchInputText {
-	margin: 0 auto;
-	resize: none;
-	border-radius: 5px;
-	width: 324px;
 	height: 390px;
 }
-#logText {
-	margin: 0 auto;
+
+.tab-text {
 	resize: none;
 	border-radius: 5px;
-	width: 324px;
-	height: 390px;
+	width: 100%;
+	height: 100%;
+	margin-bottom:6px;
 }
-#chatText {
-	margin: 0 auto;
-	resize: none;
-	border-radius: 5px;
-	width: 324px;
-	height: 390px;
-}
+
 #strobeMediaPlayback {
 	margin-left: auto;
 	margin-right: auto;

@@ -1,0 +1,17 @@
+Client / Server	Description	Event	Data
+Server	*generic*	server_*	<object> : <value>
+Server	new log message	server_message	log : <log message>
+Server	new chat message	server_message	chat : <chat message>
+Server	arduino connected	server_status	arduino : connected
+Server	arduino disconnected	server_status	arduino : disconnect
+Server	camera active	server_status	camera : active
+Server	camera inactive	server_status	camera : inactive
+Server	send original sketch	server_sketch	originalsketch : <original sketch>
+Client	*generic*	client_<event type>	<object> : <value>
+Client	upload new sketch	client_sketch	newsketch : <sketch>
+Client	new chat message	client_message	chat : <chat message>
+Client	send move forward	client_cmd	move : forward <speed>
+Client	send move backward	client_cmd	move : backward <speed>
+Client	send move left 	client_cmd	move : left <speed>
+Client	send move right	client_cmd	move : right <speed>
+Client	send stop	client_cmd	move : stop
