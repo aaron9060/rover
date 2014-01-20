@@ -3,9 +3,6 @@
 var socket = io.connect('http://epsilon:9090');
 socket.on('server_status', function(server_status) {
     $("#logText").append("[" + timeStamp() + "] " + server_status.message);
-
-    // pulsate effect	$('#tab1').effect("pulsate", {}, 3000);
-
     console.log(server_status);
     socket.emit('client_status', {
         message: 'connected'

@@ -50,12 +50,24 @@ io.sockets.on('connection', function(socket) {
     socket.emit('server_status', {
         message: 'Connected\n'
     });
+
+    setInterval(function() {
+        if (serialActive) {
+            socket.emit('server_status', {
+                message: 'Arduino is connected.'
+            });
+        } else {
+            socket.emit('server_status', {
+                message: 'Arduino is not connected.'
+            });
+        }
+    }, 5000);
+
     socket.on('client_status', function(client_status) {
         console.log(client_status);
     });
     socket.on('client_cmd', function(client_cmd) {
         // for (var key in client_cmd)  
-
         var commandString = Object.keys(client_cmd).map(function(key) {
             return key + " " + client_cmd[key] + "\n";
         }).join(" ");
@@ -64,12 +76,8 @@ io.sockets.on('connection', function(socket) {
             socket.emit('server_status', {
                 message: 'Sent cmd: ' + commandString
             });
-            console.log("Writing to Serial Port: " + Object.keys(client_cmd).map(function(key) {
-                return key + " " + client_cmd[key];
-            }).join(" "));
-            serialPort.write(Object.keys(client_cmd).map(function(key) {
-                return key + " " + client_cmd[key];
-            }).join(" "));
+            console.log("Writing to Serial Port: " + commandString);
+            serialPort.write(commandString);
         } else if ("SKETCH" in client_cmd) {
             var sketch = Object.keys(client_cmd).map(function(key) {
                 return client_cmd[key];
@@ -95,11 +103,11 @@ io.sockets.on('connection', function(socket) {
                 });
                 console.log("Console port closed for 90 seconds - Uploading Sketch\n");
                 var exec = require('child_process').exec;
-                exec('ino clean; ino build ino upload; ino clean;', {
-                    cwd: '/home/pi/src/arduino'
-                }, function(error, stdout, stderr) {
-                    // work with result
-                });
+                //       exec('ino clean; ino build ino upload; ino clean;', {
+                //           cwd: '/home/pi/src/arduino'
+                //       }, function(error, stdout, stderr) {
+                // work with result
+                //       });
                 console.log("sleep function intiated...");
                 sleep(90000);
                 console.log("Re-opening serial port");
