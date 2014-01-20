@@ -54,11 +54,11 @@ io.sockets.on('connection', function(socket) {
     setInterval(function() {
         if (serialActive) {
             socket.emit('server_status', {
-                message: 'Arduino is connected.'
+                message: 'Arduino is connected.\n'
             });
         } else {
             socket.emit('server_status', {
-                message: 'Arduino is not connected.'
+                message: 'Arduino is not connected.\n'
             });
         }
     }, 5000);
