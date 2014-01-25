@@ -46,6 +46,22 @@ console.log("Webserver online");
 
 var io = require('socket.io').listen(server);
 
+io.enable('browser client minification'); // send minified client
+io.enable('browser client etag'); // apply etag caching logic based on version number
+io.enable('browser client gzip'); // gzip the file
+io.set('log level', 1); // reduce logging
+
+// enable all transports (optional if you want flashsocket support, please note that some hosting
+// providers do not allow you to create servers that listen on a port different than 80 or their
+// default port)
+io.set('transports', [
+    'websocket',
+    'flashsocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
+]);
+
 io.sockets.on('connection', function(socket) {
     socket.emit('server_status', {
         message: 'Connected\n'
@@ -61,7 +77,7 @@ io.sockets.on('connection', function(socket) {
                 message: 'Arduino is not connected.\n'
             });
         }
-    }, 5000);
+    }, 50000);
 
     socket.on('client_status', function(client_status) {
         console.log(client_status);

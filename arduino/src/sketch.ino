@@ -40,9 +40,15 @@ void ProcessRequest(char* requeststring){
   char *command_arg3 = inParse[2]; 
   char *command_arg4 = inParse[3]; 
   if(!strcmp(command_arg1,"MOVE")){
-    if(!strcmp(command_arg2,"STOP")){ power_down(); }
+    if(strstr(command_arg2,"STOP") != NULL)
+    {
+      power_down();
+      Serial.print("STOPPING!\n"); 
+    }
     else {
       if(!strcmp(command_arg3,"SPEED")){
+        Serial.print("SPEED DETECTED!!! [1] == ");
+        Serial.println(inParse[1]);
         int speed = atoi(command_arg4);
         if(speed >= 0 && speed <=255){ 
           if(!strcmp(command_arg2,"FORW")){
