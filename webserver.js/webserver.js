@@ -115,7 +115,7 @@ io.sockets.on('connection', function(socket) {
                 var exec = require('child_process').exec,
                     child;
 
-                child = exec('arduino_update', {
+                child = exec('/home/pi/dev/arduino/arduino_update', {
                     cwd: '/home/pi/dev/arduino'
                 }, function(error, stdout, stderr) {
                     if (stdout !== '') {
