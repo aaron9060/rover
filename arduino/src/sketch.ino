@@ -42,39 +42,7 @@ void ProcessRequest(char* requeststring){
 				int speed = atoi(command_arg[3]);
 				if(speed >= 0 && speed <=255){ 
 					// Find direction argument
-					if(!strcmp(command_arg[1],"FORW")){
-						Serial.print("Moving forward at speed ");
-						Serial.println(speed);
-						forward(speed);
-					}
-					else if(!strcmp(command_arg[1],"BACK")){
-						Serial.print("Moving backward at speed ");
-						Serial.println(speed);
-						backward(speed);
-					}
-					else if(!strcmp(command_arg[1],"FWLE")){
-						Serial.print("Moving forward/left at speed ");
-						Serial.println(speed);
-						turnleft(speed);
-					}
-					else if(!strcmp(command_arg[1],"FWRI")){
-						Serial.print("Moving forward/right at speed ");
-						Serial.println(speed);
-						turnright(speed);
-					}
-					else if(!strcmp(command_arg[1],"BWLE")){
-						Serial.print("Moving backward/left at speed ");
-						Serial.println(speed);
-						backleft(speed);
-					} 
-					else if(!strcmp(command_arg[1],"BWRI")){
-						Serial.print("Moving backward/right at speed ");
-						Serial.println(speed);
-						backright(speed);
-					} 
-					else {
-						consoleError("valid MOVE argument not found", command_arg, count);
-					}
+					cmd_move(command_arg[1], speed);
 				} 
 				// speed value outside of range (speed >= 0 && speed <=255)    
 				else {
@@ -106,48 +74,48 @@ int i = 0;
 	Serial.println("***********************");
 }
 
-void forward(byte speed) {
-	Serial.println("forward");
-	analogWrite(motorEnableR, speed);
-	analogWrite(motorEnableL, speed);
-	digitalWrite(motorL, LOW);
-	digitalWrite(motorR, LOW);  
+void cmd_move(char *direction, int speed) {
+	Serial.print("Moving ");
+	Serial.println(direction);
+
+	if (strcmp(direction, "FORW") == 0) {
+		analogWrite(motorEnableR, speed);
+		analogWrite(motorEnableL, speed);
+		digitalWrite(motorL, LOW);
+		digitalWrite(motorR, LOW);  
+	}
+	else if (strcmp(direction, "BACK") == 0) {
+		analogWrite(motorEnableR, speed);
+		analogWrite(motorEnableL, speed);
+		digitalWrite(motorL, HIGH);
+		digitalWrite(motorR, HIGH);  
+	}
+	else if (strcmp(direction, "FWRI") == 0) {
+		analogWrite(motorEnableR, speed/2);
+		analogWrite(motorEnableL, speed);
+		digitalWrite(motorL, LOW);
+		digitalWrite(motorR, LOW);  
+	}
+	else if (strcmp(direction, "FWLE") == 0) {
+		analogWrite(motorEnableR, speed);
+		analogWrite(motorEnableL, speed/2);
+		digitalWrite(motorL, LOW);
+		digitalWrite(motorR, LOW);
+	}
+	else if (strcmp(direction, "BWRI") == 0) {
+		analogWrite(motorEnableR, speed/2);
+		analogWrite(motorEnableL, speed);
+		digitalWrite(motorL, HIGH);
+		digitalWrite(motorR, HIGH);  
+	}
+	else if (strcmp(direction, "BWLE") == 0) {
+	 	analogWrite(motorEnableR, speed);
+		analogWrite(motorEnableL, speed/2);
+		digitalWrite(motorL, HIGH);
+		digitalWrite(motorR, HIGH);  
+	}
 }
-void backward(byte speed) {
-	Serial.println("reverse");
-	analogWrite(motorEnableR, speed);
-	analogWrite(motorEnableL, speed);
-	digitalWrite(motorL, HIGH);
-	digitalWrite(motorR, HIGH);  
-}
-void turnright(byte speed) {
-	Serial.println("Turning Right");
-	analogWrite(motorEnableR, speed/2);
-	analogWrite(motorEnableL, speed);
-	digitalWrite(motorL, LOW);
-	digitalWrite(motorR, LOW);  
-}
-void turnleft(byte speed) {
-	Serial.println("Turning Left");
-	analogWrite(motorEnableR, speed);
-	analogWrite(motorEnableL, speed/2);
-	digitalWrite(motorL, LOW);
-	digitalWrite(motorR, LOW);
-}
-void backright(byte speed) {
-	Serial.println("Backwards Right");
-	analogWrite(motorEnableR, speed/2);
-	analogWrite(motorEnableL, speed);
-	digitalWrite(motorL, HIGH);
-	digitalWrite(motorR, HIGH);  
-}
-void backleft(byte speed) {
-	Serial.println("Backwards Left");
-	analogWrite(motorEnableR, speed);
-	analogWrite(motorEnableL, speed/2);
-	digitalWrite(motorL, HIGH);
-	digitalWrite(motorR, HIGH);  
-}
+
 void power_down() {
 	// disable both motors
 	Serial.println("POWERING DOWN");
