@@ -97,7 +97,7 @@ void consoleError(char *errorMessage, char *commandString[], int index){
 int i = 0;
 	Serial.println("***********************");
 	Serial.println(errorMessage);
-	for(i=0;i<=index;i++){
+	for(i=0;i<index;i++){
 		Serial.print("Command ");
 		Serial.print(i);
 		Serial.print(": ");
