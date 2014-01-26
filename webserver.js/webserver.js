@@ -132,7 +132,7 @@ io.sockets.on('connection', function(socket) {
 
 var spawn = require('child_process').spawn;
 var filename = '/tmp/rover.log';
-var tail = spawn("tail", ["-n 0 -f", filename]);
+var tail = spawn('tail', ['-n 0', '-f', filename]);
 
 // Serial Port Communications
 var serialActive = false;
