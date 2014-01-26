@@ -45,23 +45,10 @@ console.log("Webserver online");
 //real-time communication (socket.io)
 
 var io = require('socket.io').listen(server);
-
 io.enable('browser client minification'); // send minified client
 io.enable('browser client etag'); // apply etag caching logic based on version number
 io.enable('browser client gzip'); // gzip the file
 io.set('log level', 1); // reduce logging
-
-// enable all transports (optional if you want flashsocket support, please note that some hosting
-// providers do not allow you to create servers that listen on a port different than 80 or their
-// default port)
-io.set('transports', [
-    'websocket',
-    'flashsocket',
-    'htmlfile',
-    'xhr-polling',
-    'jsonp-polling'
-]);
-
 io.sockets.on('connection', function(socket) {
     socket.emit('server_status', {
         message: 'Connected\n'
@@ -119,7 +106,7 @@ io.sockets.on('connection', function(socket) {
                 });
                 console.log("Console port closed for 90 seconds - Uploading Sketch\n");
                 var exec = require('child_process').exec;
-                //       exec('ino clean; ino build ino upload; ino clean;', {
+                //       exec('ino clean > /tmp/ino.log ; ino build >> /tmp/ino.log ; ino upload >> /tmp/ino.log ; ino clean >> /tmp/ino.log', {
                 //           cwd: '/home/pi/src/arduino'
                 //       }, function(error, stdout, stderr) {
                 // work with result
@@ -136,6 +123,12 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
+// Log file debug monitoring
+Tail = require('tail').Tail;
+tail = new Tail("/tmp/ino.log");
+tail.on("line", function(data) {
+    console.log(data);
+});
 
 // Serial Port Communications
 var serialActive = false;
