@@ -113,11 +113,21 @@ io.sockets.on('connection', function(socket) {
                 });
                 console.log("Console port closed for 90 seconds - Uploading Sketch\n");
                 var exec = require('child_process').exec,
-                    exec('ino clean >> /tmp/rover.log ; ino build >> /tmp/rover.log ; ino upload >> /tmp/rover.log ; ino clean >> /tmp/rover.log', {
-                        cwd: '/home/pi/src/arduino'
-                    }, function(error, stdout, stderr) {
-                        console.log(error, stdout, stderr);
-                    });
+                    child;
+
+                child = exec('ino clean >> /tmp/rover.log ; ino build >> /tmp/rover.log ; ino upload >> /tmp/rover.log ; ino clean >> /tmp/rover.log', {
+                    cwd: '/home/pi/src/arduino'
+                }, function(error, stdout, stderr) {
+                    if (stdout !== '') {
+                        console.log('---------stdout: ---------\n' + stdout);
+                    }
+                    if (stderr !== '') {
+                        console.log('---------stderr: ---------\n' + stderr);
+                    }
+                    if (error !== null) {
+                        console.log('---------exec error: ---------\n[' + error + ']');
+                    }
+                });
                 console.log("sleep function intiated...");
                 sleep(90000);
                 console.log("Re-opening serial port");
