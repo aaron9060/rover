@@ -95,8 +95,7 @@ io.sockets.on('connection', function(socket) {
             socket.emit('server_status', {
                 message: 'Sketch Recieved\n'
             });
-            console.log("Sketch Recieved:");
-            console.log(sketch);
+            console.log("(this should be done first) Sketch Recieved:");
             var fs = require('fs');
             // backup current sketch to ./src.bak
             fs.createReadStream('/home/pi/dev/arduino/src/sketch.ino').pipe(fs.createWriteStream('/home/pi/dev/arduino/src.bak/sketch.ino-'));
@@ -104,14 +103,14 @@ io.sockets.on('connection', function(socket) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log("The file was saved!");
+                    console.log("(this should be done second) The file was saved.");
                 }
             });
             serialPort.close(function() {
                 socket.emit('server_status', {
                     message: 'Console port closed for 90 seconds. Uploading Sketch.\n'
                 });
-                console.log("Console port closed for 90 seconds - Uploading Sketch\n");
+                console.log("(this should be done third) Console port closed for 90 seconds - Uploading Sketch\n");
                 var exec = require('child_process').exec,
                     child;
 
@@ -128,9 +127,9 @@ io.sockets.on('connection', function(socket) {
                         console.log('---------exec error: ---------\n[' + error + ']');
                     }
                 });
-                console.log("sleep function intiated...");
+                console.log(" (this should be done fourth, before the 90 second sleep) sleep function intiated...");
                 sleep(90000);
-                console.log("Re-opening serial port");
+                console.log(" (this should be done fifth, after the 90 second sleep) Re-opening serial port");
                 socket.emit('server_status', {
                     message: 'Re-opening serial port\n'
                 });
