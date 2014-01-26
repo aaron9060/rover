@@ -67,12 +67,11 @@ io.sockets.on('connection', function(socket) {
     }, 20000);
 
     tail.stdout.on("data", function(data) {
-        console.log(data);
+        console.log(data.toString());
         socket.emit('server_status', {
-            message: data
+            message: data.toString()
         });
     });
-
 
     socket.on('client_status', function(client_status) {
         console.log(client_status);
