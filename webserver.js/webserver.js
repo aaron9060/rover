@@ -84,7 +84,7 @@ io.sockets.on('connection', function(socket) {
 
         if ("MOVE" in client_cmd) {
             socket.emit('server_status', {
-                message: 'Sent cmd: ' + commandString
+                message: 'Sent cmd: ' + commandString + '\n'
             });
             console.log("Writing to Serial Port: " + commandString);
             serialPort.write(commandString);
