@@ -115,7 +115,9 @@ io.sockets.on('connection', function(socket) {
                 var exec = require('child_process').exec;
                 exec('ino clean >> /tmp/rover.log ; ino build >> /tmp/rover.log ; ino upload >> /tmp/rover.log ; ino clean >> /tmp/rover.log', {
                     cwd: '/home/pi/src/arduino'
-                }, function(error, stdout, stderr) {});
+                }, function(error, stdout, stderr) {
+                    console.log(error, stdout, stderr);
+                });
                 console.log("sleep function intiated...");
                 sleep(90000);
                 console.log("Re-opening serial port");
@@ -129,7 +131,6 @@ io.sockets.on('connection', function(socket) {
 });
 
 // Log file debug monitoring
-
 var spawn = require('child_process').spawn;
 var filename = '/tmp/rover.log';
 var tail = spawn('tail', ['-n 0', '-f', filename]);
