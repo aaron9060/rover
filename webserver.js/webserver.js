@@ -115,8 +115,8 @@ io.sockets.on('connection', function(socket) {
                 var exec = require('child_process').exec,
                     child;
 
-                child = exec('ino clean >> /tmp/rover.log ; ino build >> /tmp/rover.log ; ino upload >> /tmp/rover.log ; ino clean >> /tmp/rover.log', {
-                    cwd: '/home/pi/src/arduino'
+                child = exec('arduino_update', {
+                    cwd: '/home/pi/dev/arduino'
                 }, function(error, stdout, stderr) {
                     if (stdout !== '') {
                         console.log('---------stdout: ---------\n' + stdout);
