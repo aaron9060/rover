@@ -66,6 +66,14 @@ io.sockets.on('connection', function(socket) {
         }
     }, 20000);
 
+    tail.stdout.on("data", function(data) {
+        console.log(data);
+        socket.emit('server_status', {
+            message: data
+        });
+    });
+
+
     socket.on('client_status', function(client_status) {
         console.log(client_status);
     });
@@ -106,7 +114,7 @@ io.sockets.on('connection', function(socket) {
                 });
                 console.log("Console port closed for 90 seconds - Uploading Sketch\n");
                 var exec = require('child_process').exec;
-                //       exec('ino clean > /tmp/ino.log ; ino build >> /tmp/ino.log ; ino upload >> /tmp/ino.log ; ino clean >> /tmp/ino.log', {
+                //       exec('ino clean > /tmp/rover.log ; ino build >> /tmp/rover.log ; ino upload >> /tmp/rover.log ; ino clean >> /tmp/rover.log', {
                 //           cwd: '/home/pi/src/arduino'
                 //       }, function(error, stdout, stderr) {
                 // work with result
@@ -124,11 +132,8 @@ io.sockets.on('connection', function(socket) {
 });
 
 // Log file debug monitoring
-Tail = require('tail').Tail;
-tail = new Tail("/tmp/ino.log");
-tail.on("line", function(data) {
-    console.log(data);
-});
+var filename = "/tmp/rover.log";
+var tail = spawn("tail", ["-f", filename]);
 
 // Serial Port Communications
 var serialActive = false;
