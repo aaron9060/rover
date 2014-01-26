@@ -134,7 +134,7 @@ io.sockets.on('connection', function(socket) {
 // Log file debug monitoring
 
 var spawn = require('child_process').spawn;
-var filename = "/tmp/rover.log";
+var filename = '/tmp/rover.log';
 var tail = spawn("tail", ["-f", filename]);
 
 // Serial Port Communications
