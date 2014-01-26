@@ -77,7 +77,7 @@ io.sockets.on('connection', function(socket) {
                 message: 'Arduino is not connected.\n'
             });
         }
-    }, 50000);
+    }, 20000);
 
     socket.on('client_status', function(client_status) {
         console.log(client_status);
@@ -85,7 +85,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('client_cmd', function(client_cmd) {
         // for (var key in client_cmd)  
         var commandString = Object.keys(client_cmd).map(function(key) {
-            return key + " " + client_cmd[key] + "\n";
+            return key + " " + client_cmd[key];
         }).join(" ");
 
         if ("MOVE" in client_cmd) {
