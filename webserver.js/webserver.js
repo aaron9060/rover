@@ -106,6 +106,7 @@ io.sockets.on('connection', function(socket) {
                     console.log("(this should be done second) The file was saved.");
                 }
             });
+            serialActive = false;
             serialPort.close(function() {
                 socket.emit('server_status', {
                     message: 'Console port closed for 90 seconds. Uploading Sketch.\n'
@@ -127,9 +128,9 @@ io.sockets.on('connection', function(socket) {
                         console.log('---------exec error: ---------\n[' + error + ']');
                     }
                 });
-                console.log(" (this should be done fourth, before the 90 second sleep) sleep function intiated...");
+                console.log("(this should be done fourth, before the 90 second sleep) sleep function intiated...");
                 sleep(90000);
-                console.log(" (this should be done fifth, after the 90 second sleep) Re-opening serial port");
+                console.log("(this should be done fifth, after the 90 second sleep) Re-opening serial port");
                 socket.emit('server_status', {
                     message: 'Re-opening serial port\n'
                 });
@@ -159,7 +160,7 @@ function serialInit() {
         console.log('Port open');
     });
     serialPort.on('data', function(data) {
-        serialActive = false;
+        serialActive = true;
         console.log(data.toString());
     });
     console.log("Console Port Opened");
