@@ -6,6 +6,8 @@ var http = require("http"),
     fs = require("fs"),
     port = process.argv[2] || 9090;
 
+var fs = require('fs');
+
 var server = http.createServer(function(request, response) {
 
     var uri = url.parse(request.url).pathname,
@@ -89,8 +91,12 @@ io.sockets.on('connection', function(socket) {
             console.log("Writing to Serial Port: " + commandString);
             serialPort.write(commandString);
         } else if ("ORIGINALSKETCH" in client_cmd) {
-            socket.emit('server_cmd', {
-                ORIGINALSKETCH: 'O-R-G-I-N-A-L'
+            fs.readFile('/home/pi/dev/arduino/sketch.ino.original', function(err, data) {
+                if (err) throw err;
+                console.log(data);
+                socket.emit('server_cmd', {
+                    ORIGINALSKETCH: data
+                });
             });
         } else if ("SKETCH" in client_cmd) {
             var sketch = Object.keys(client_cmd).map(function(key) {
@@ -100,9 +106,8 @@ io.sockets.on('connection', function(socket) {
                 message: 'Sketch Recieved\n'
             });
             console.log("(this should be done first) Sketch Recieved:");
-            var fs = require('fs');
+            fs = require('fs');
             // backup current sketch to ./src.bak
-            fs.createReadStream('/home/pi/dev/arduino/src/sketch.ino').pipe(fs.createWriteStream('/home/pi/dev/arduino/src.bak/sketch.ino-'));
             fs.writeFile("/home/pi/dev/arduino/src/sketch.ino", sketch, function(err) {
                 if (err) {
                     console.log(err);
