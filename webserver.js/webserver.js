@@ -95,7 +95,7 @@ io.sockets.on('connection', function(socket) {
                 if (err) throw err;
                 console.log(data);
                 socket.emit('server_cmd', {
-                    ORIGINALSKETCH: data
+                    ORIGINALSKETCH: data.toString()
                 });
             });
         } else if ("SKETCH" in client_cmd) {
