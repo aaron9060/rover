@@ -65,7 +65,7 @@ document.getElementById('sketchOriginalSubmit').addEventListener('click', functi
     var sketchInput = document.getElementById('sketchInputText');
     console.log(sketchInputText.value);
     socket.emit('client_cmd', {
-        SKETCH: original
+        ORIGINALSKETCH: original
     });
 }, false);
 
