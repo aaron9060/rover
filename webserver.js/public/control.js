@@ -17,10 +17,10 @@ socket.on('server_status', function(server_status) {
     });
 });
 socket.on('server_cmd', function(server_cmd) {
-	$("#logText").append("[" + timeStamp() + "]- " + server_cmd.message);	
-	if ("ORIGINALSKETCH" in server_cmd) {
-		document.getElementById('sketchInputText').value = 'ORIGINAL SKETCH HERE';
-	}
+    $("#logText").append("[" + timeStamp() + "]- " + server_cmd.message);
+    if ("ORIGINALSKETCH" in server_cmd) {
+        document.getElementById('sketchInputText').value = server_cmd.ORIGINALSKETCH;
+    }
 })
 
 
