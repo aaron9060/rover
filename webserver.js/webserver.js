@@ -88,7 +88,7 @@ io.sockets.on('connection', function(socket) {
             });
             console.log("Writing to Serial Port: " + commandString);
             serialPort.write(commandString);
-        } else if ("ORIGINALSKETCH" in cliend_cmd) {
+        } else if ("ORIGINALSKETCH" in client_cmd) {
             document.getElementById('sketchInputText').value = 'ORIGINAL SKETCH HERE';
 
         } else if ("SKETCH" in client_cmd) {
