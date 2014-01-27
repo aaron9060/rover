@@ -21,7 +21,7 @@ socket.on('server_cmd', function(server_cmd) {
     if ("ORIGINALSKETCH" in server_cmd) {
         document.getElementById('sketchInputText').value = server_cmd.ORIGINALSKETCH;
     }
-})
+});
 
 
 // Provide timestamps for logging / chat
