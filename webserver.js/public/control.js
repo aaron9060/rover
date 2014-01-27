@@ -9,6 +9,21 @@ socket.on('server_status', function(server_status) {
     });
 });
 
+socket.on('server_status', function(server_status) {
+    $("#logText").append("[" + timeStamp() + "] " + server_status.message);
+    console.log(server_status);
+    socket.emit('client_status', {
+        message: 'connected'
+    });
+});
+socket.on('server_cmd', function(server_cmd) {
+	$("#logText").append("[" + timeStamp() + "]- " + server_cmd.message);	
+	if ("ORIGINALSKETCH" in server_cmd) {
+		document.getElementById('sketchInputText').value = 'ORIGINAL SKETCH HERE';
+	}
+})
+
+
 // Provide timestamps for logging / chat
 
 function timeStamp() {
